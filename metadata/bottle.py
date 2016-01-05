@@ -1148,7 +1148,7 @@ class BaseRequest(object):
                 maxread -= len(part)
             if read(2) != rn:
                 raise err
-            
+
     @DictProperty('environ', 'bottle.request.body', read_only=True)
     def _body(self):
         body_iter = self._iter_chunked if self.chunked else self._iter_body
@@ -2018,7 +2018,7 @@ class ConfigDict(dict):
 
             >>> c = ConfigDict()
             >>> c.load_dict({'some': {'namespace': {'key': 'value'} } })
-            {'some.namespace.key': 'value'}            
+            {'some.namespace.key': 'value'}
         '''
         for key, value in source.items():
             if isinstance(key, str):
@@ -2227,7 +2227,7 @@ class FileUpload(object):
     def filename(self):
         ''' Name of the file on the client file system, but normalized to ensure
             file system compatibility. An empty filename is returned as 'empty'.
-            
+
             Only ASCII letters, digits, dashes, underscores and dots are
             allowed in the final filename. Accents are removed, if possible.
             Whitespace is replaced by a single dash. Leading or tailing dots
@@ -2652,20 +2652,20 @@ class CherryPyServer(ServerAdapter):
         from cherrypy import wsgiserver
         self.options['bind_addr'] = (self.host, self.port)
         self.options['wsgi_app'] = handler
-        
+
         certfile = self.options.get('certfile')
         if certfile:
             del self.options['certfile']
         keyfile = self.options.get('keyfile')
         if keyfile:
             del self.options['keyfile']
-        
+
         server = wsgiserver.CherryPyWSGIServer(**self.options)
         if certfile:
             server.ssl_certificate = certfile
         if keyfile:
             server.ssl_private_key = keyfile
-        
+
         try:
             server.start()
         finally:
